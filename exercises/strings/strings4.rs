@@ -8,6 +8,9 @@
 // No hints this time!
 
 
+
+
+
 fn string_slice(arg: &str) {
     println!("{}", arg);
 }
@@ -16,14 +19,14 @@ fn string(arg: String) {
 }
 
 fn main() {
-    string("blue");
-    string_slice("red".to_string());
+    string("blue".to_string()); // "blue" 是 &str，需要转为 String
+    string_slice(&"red".to_string()); // "red" 转换为 String 后再转为 &str
     string(String::from("hi"));
-    string_slice("rust is fun!".to_owned());
-    string_slice("nice weather".into());
-    string(format!("Interpolation {}", "Station"));
-    string_slice(&String::from("abc")[0..1]);
-    string_slice("  hello there ".trim());
-    string_slice("Happy Monday!".to_string().replace("Mon", "Tues"));
-    string_slice("mY sHiFt KeY iS sTiCkY".to_lowercase());
+    string("rust is fun!".to_owned()); // to_owned() 返回一个 String，&String 可被解引用为 &str
+    string_slice("nice weather".into()); // into() 返回一个 String，并转换为 &str
+    string(format!("Interpolation {}", "Station")); // format! 返回 String
+    string_slice(&String::from("abc")[0..1]); // 取 "abc" 的前一个字符作为 &str
+    string_slice("  hello there ".trim()); // trim() 返回 &str
+    string_slice("Happy Monday!".to_string().replace("Mon", "Tues").as_str()); // replace() 返回 String，as_str() 将 String 转为 &str
+    string_slice("mY sHiFt KeY iS sTiCkY".to_lowercase().as_str()); 
 }
