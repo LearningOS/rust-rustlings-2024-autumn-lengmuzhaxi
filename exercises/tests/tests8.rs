@@ -7,13 +7,34 @@
 // Execute `rustlings hint tests8` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 这是您 tests8.rs 的修改版本
+fn my_demo_function() {
+    println!("这是 my_demo_function!");
+}
 
-fn main() {}
+fn my_demo_function_alias() {
+    println!("这是 my_demo_function_alias!");
+}
 
+fn main() {
+    my_demo_function();
+    my_demo_function_alias();
+}
+
+// 测试模块
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_my_demo_function() {
+        my_demo_function(); // 测试函数调用
+    }
+
+    #[test]
+    fn test_my_demo_function_alias() {
+        my_demo_function_alias(); // 测试别名函数调用
+    }
 
     #[test]
     fn test_success() {

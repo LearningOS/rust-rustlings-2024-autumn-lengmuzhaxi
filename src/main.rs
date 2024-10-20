@@ -594,3 +594,11 @@ const WELCOME: &str = r#"       welcome to...
  | |  | |_| \__ \ |_| | | | | | (_| \__ \
  |_|   \__,_|___/\__|_|_|_| |_|\__, |___/
                                |___/"#;
+// 在 src/main.rs 中定义函数
+pub fn my_demo_function() {
+    println!("这是 my_demo_function!");
+}
+
+pub fn my_demo_function_alias() {
+    println!("这是 my_demo_function_alias!");
+}
