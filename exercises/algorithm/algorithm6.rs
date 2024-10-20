@@ -3,30 +3,39 @@
 	This problem requires you to implement a basic DFS traversal
 */
 
-// I AM NOT DONE
 use std::collections::HashSet;
-
 struct Graph {
     adj: Vec<Vec<usize>>, 
 }
 
 impl Graph {
+    // 创建一个具有 n 个顶点的新图
     fn new(n: usize) -> Self {
         Graph {
             adj: vec![vec![]; n],
         }
     }
 
+    // 添加一条边到图中
     fn add_edge(&mut self, src: usize, dest: usize) {
         self.adj[src].push(dest);
         self.adj[dest].push(src); 
     }
 
+    // DFS 的辅助函数
     fn dfs_util(&self, v: usize, visited: &mut HashSet<usize>, visit_order: &mut Vec<usize>) {
-        //TODO
+        visited.insert(v); // 标记当前节点为已访问
+        visit_order.push(v); // 记录访问顺序
+
+        // 递归访问所有未访问的相邻节点
+        for &neighbor in &self.adj[v] {
+            if !visited.contains(&neighbor) {
+                self.dfs_util(neighbor, visited, visit_order);
+            }
+        }
     }
 
-    // Perform a depth-first search on the graph, return the order of visited nodes
+    // 执行深度优先搜索，返回访问节点的顺序
     fn dfs(&self, start: usize) -> Vec<usize> {
         let mut visited = HashSet::new();
         let mut visit_order = Vec::new(); 
@@ -75,4 +84,3 @@ mod tests {
         assert_eq!(visit_order_disconnected, vec![3, 4]); 
     }
 }
-
